@@ -45,7 +45,10 @@ Not much to do
 Nginx Proxy
 --------
 
-This is what actually servers our site.
+This is what actually servers our site. The generated source maps are 
+proected by password. The current password username and password is password
+. You can change them by updating the htaccess file
+https://www.web2generators.com/apache-tools/htpasswd-generator
 
 
 Postgresql

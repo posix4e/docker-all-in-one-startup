@@ -57,3 +57,5 @@ typings/
 # dotenv environment variables file
 .env
 
+# Nginx temp files
+nginx/build/
