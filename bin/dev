@@ -1,0 +1,7 @@
+#!/bin/sh
+set -exu
+
+rm -rf build
+cp -a frontend/build nginx/build
+docker-compose build
+docker-compose up
