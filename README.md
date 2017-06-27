@@ -100,4 +100,4 @@ https://www.web2generators.com/apache-tools/htpasswd-generator
 Postgresql
 --------
 
-The database we store our data in.
+The database we store our data in. There's an init directory for everything you need to initialize your database.
