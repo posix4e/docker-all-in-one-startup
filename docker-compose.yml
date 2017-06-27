@@ -6,21 +6,16 @@ services:
       - 8000:80
     links:
       - backend 
+  db:
+    build: postgres
+    environment:
+      POSTGRES_PASSWORD: docker
   backend:
     build: backend
+    ports:
+      - 3000:3000
     links:
       - db
-    depends_on:
-      - db_init
     environment:
       PGRST_DB_URI: db
       PGRST_SERVER_HOST: db
-  db:
-    image: postgres:9.6.3-alpine
-    environment:
-      POSTGRES_PASSWORD: docker
-      POSTGRES_USER: docker
-      POSTGRES_DB: api
-  db_init:
-    image: postgres:9.6.3-alpine
-    command: echo "CREATE DATABASE api" | psql --host=db

@@ -1,7 +1,9 @@
 #!/bin/sh
 set -exu
 
-rm -rf build
-cp -a frontend/build nginx/build
+NGINX_BUILD=${BUILD_LOCATION-"nginx/build"}
+
+rm -rf ${NGINX_BUILD}
+cp -a frontend/build ${NGINX_BUILD}
 docker-compose build
 docker-compose up

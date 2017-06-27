@@ -1,0 +1,4 @@
+CREATE ROLE anon;
+CREATE SCHEMA api;
+CREATE TABLE api.people (name text);
+GRANT ALL PRIVILEGES ON SCHEMA api TO anon;
