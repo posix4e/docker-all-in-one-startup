@@ -1,0 +1,25 @@
+#!/bin/bash
+set -exu
+
+LOADBALNCER=1.1.1.1
+NAMESPACE=staging-e
+
+bash ./bin/push_to_dockerhub
+
+docker-compose build
+rm -rf k8s
+mkdir k8s
+pushd k8s
+
+kubectl create namespace ${NAMESPACE} || true
+# generate k8s files for production
+kompose convert -v -f ../docker-compose.yml
+#  Bring up staging
+for i in *.yaml
+    do echo Starting $i
+    kubectl --namespace=${NAMESPACE} apply -f  $i
+done
+
+# Tie it to a load balancer
+kubectl delete --namespace=${NAMESPACE} service nginx
+kubectl expose --namespace=${NAMESPACE} --load-balancer-ip=${LOADBALNCER} --type="LoadBalancer" --port=80 --target-port=8000 deployment/nginx  

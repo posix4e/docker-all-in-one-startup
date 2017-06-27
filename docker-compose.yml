@@ -2,16 +2,19 @@ version: "2"
 services:
   nginx:
     build: nginx
+    image: posiexampleapp/nginx
     ports:
       - 8000:80
     links:
       - backend 
   db:
     build: postgres
+    image: posiexampleapp/db
     environment:
       POSTGRES_PASSWORD: docker
   backend:
     build: backend
+    image: posiexampleapp/backend
     ports:
       - 3000:3000
     links:

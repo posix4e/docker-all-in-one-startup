@@ -12,7 +12,7 @@ TODO
 --------
 - [ ] Add jwt
 - [ ] Add ssl support
-- [ ] Add kubernetes support using kompose
+- [ ] Add deploy to production instructions
 
 Preinstall
 --------
@@ -27,6 +27,13 @@ install docker compose using pip
 ```
 pip install docker-compose
 ```
+
+Configuration
+--------
+We try to keep it easy for you. Pretty emuch everything
+which is not a secret is done for you.
+You'll need to fill in the image names in docker-compose.yaml and
+ in the bin scripts.
 
 
 Frontend

@@ -1,0 +1,21 @@
+#!/bin/bash
+VERSION=${1-latest}
+set -exu
+IMAGES="posiexampleapp/nginx posiexampleapp/backend posiexampleapp/db"
+for i in $IMAGES
+  do image=$i:$VERSION
+  docker  push ${image} &
+done
+
+FAIL=0
+for job in `jobs -p`; do
+    echo $job
+    wait $job || let "FAIL+=1"
+done
+
+if [ "$FAIL" == "0" ]; then
+    echo "YAY! (fail=$FAIL)"
+else
+    echo "FAIL! (fail=$FAIL)"
+    exit 2
+fi
