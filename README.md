@@ -31,7 +31,8 @@ Preinstall
 --------
 
 You will need 
-
+ - npm hopefully with nvm
+ - yarn
  - pip
  - A new version docker https://docs.docker.com/engine/installation/linux/ubuntu/#install-docker
 
