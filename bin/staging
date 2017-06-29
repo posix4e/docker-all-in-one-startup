@@ -4,9 +4,9 @@ set -exu
 LOADBALNCER=1.1.1.1
 NAMESPACE=staging-e
 
+docker-compose build
 bash ./bin/push_to_dockerhub
 
-docker-compose build
 rm -rf k8s
 mkdir k8s
 pushd k8s
