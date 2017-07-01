@@ -41,11 +41,12 @@ They terminate it and are owned by the CIA anyway :)
 
 Configuration
 --------
-We try to keep it easy for you. Pretty much everything
-which is not stored secrets is done for you.
+We try to keep it easy for you.
 You'll need to fill in the image names in docker-compose.yaml and
  in the bin scripts, and you really should understand those scripts 
- before using this at all.
+ before using this at all. Notice in our example we had to change 
+ the config scripts to back to google. Every kubernetes config is a bit
+ special which is why we keep our scripts simple.
 
 
 Frontend
@@ -58,7 +59,7 @@ You can use yarn to manage the server.
 ```
   yarn start
 ```
-    Starts the development server. On our example app we point this at production this way
+    Starts the development server. On our example app we point our backend at staging with this.  
 
 ```
   yarn build
