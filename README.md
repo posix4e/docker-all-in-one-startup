@@ -1,22 +1,24 @@
-# A usable Production with some some configfiles, sql and js to build an airbnb clone.
-
-
-We include the auto backend postgrest
-https://postgrest.com but a user could easily provide whatever backend in front of the database they want.
-
-The frontend can be built into a nginx container and deployed
-via ecs ,docker-compose or kubernetes. 
-
-Although we use a docker-compose locally, we automatically support
-deployment to kubernetes with kompose to staging. 
+# Everything for production with just configfiles, sql and js.
 
 There is an example app deployed to google with kubernetes at
 https://github.com/posix4e/reserve-my-life
 The google load balancer for the nginx is at
 http://35.188.144.93
 
+We include the auto backend postgrest
+https://postgrest.com but a user could easily provide whatever backend in front of the database they want. 
+
+The frontend can be built into a nginx container and deployed
+via ecs ,docker-compose or kubernetes. If you need to change the database locally, but by default a frontend developer points to staging.
+
+Although we use a docker-compose locally, we automatically support
+deployment to kubernetes with kompose or ecs for staging and production. 
+
+Rules to live by
+--------
+- Someone has to understand how the cluster is managed, but this depends totally on your choice of deployment.
 - No one should deploy to production k8s without being a kubectl expert
-- Hopefully you aren't using a docker postgresql included as it's ephemeral an not backed up
+- Hopefully you aren't using the included docker postgresql in production as it's ephemeral an not backed up. Docker-compose will keep it's state if you want. Our scripts generally delete the docker-compose version in our example. 
 - You already have the k8s files so you'll have no trouble using them directly
 
 Preinstall
