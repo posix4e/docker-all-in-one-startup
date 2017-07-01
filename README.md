@@ -81,8 +81,7 @@ You can use yarn to manage the server.
 Backend Interace
 --------
 
-Not much to do
-
+Postgrest totally unconfigured. Checkout the example for a use with jwt.
 
 Nginx Proxy
 --------
