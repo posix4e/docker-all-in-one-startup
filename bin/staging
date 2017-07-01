@@ -1,25 +1,38 @@
 #!/bin/bash
 set -exu
 
-LOADBALNCER=1.1.1.1
+LOADBALNCER=35.188.144.93
 NAMESPACE=staging-e
 
-docker-compose build
+# Example of how to add google
+#echo "Configuring gcloud for the staging environment..."
+#gcloud config set project reserve-my-life
+#gcloud config set compute/region us-central1
+#gcloud config set compute/zone us-central1-a
+#gcloud container clusters get-credentials cluster-3 --zone us-central1-a
+
+kubectl delete --namespace=${NAMESPACE} pods,services,deployments --all
+kubectl delete namespace ${NAMESPACE} || true
+
 bash ./bin/push_to_dockerhub
 
+docker-compose build
 rm -rf k8s
 mkdir k8s
 pushd k8s
 
-kubectl create namespace ${NAMESPACE} || true
+COUNTER=1
+until kubectl create namespace ${NAMESPACE} 
+    do echo "Waiting for old delete to succeed"
+    let COUNTER=COUNTER+1
+    sleep $COUNTER
+done
 # generate k8s files for production
 kompose convert -v -f ../docker-compose.yml
 #  Bring up staging
-for i in *.yaml
-    do echo Starting $i
+for i in backend-*.yaml nginx-deployment.yaml db-*.yaml
+    do echo Starting $i 
     kubectl --namespace=${NAMESPACE} apply -f  $i
 done
 
-# Tie it to a load balancer
-kubectl delete --namespace=${NAMESPACE} service nginx
-kubectl expose --namespace=${NAMESPACE} --load-balancer-ip=${LOADBALNCER} --type="LoadBalancer" --port=80 --target-port=8000 deployment/nginx  
+kubectl expose --namespace=${NAMESPACE} --load-balancer-ip=${LOADBALNCER} --type="LoadBalancer" --port=80 --target-port=80 --name=nginx --protocol=TCP deployment/nginx
