@@ -39,6 +39,14 @@ You will need an external load balancer ip. Also you will want to put cloudflare
 This will give you ok ssl support, but it's not super secure as the link to cloudflare would be unencrypted.
 They terminate it and are owned by the CIA anyway :)
 
+Using
+--------
+Everything you run is in the bin directory. You can start dev with ./bin/dev. You can stop it with
+
+```
+docker-compose stop
+```
+
 Configuration
 --------
 We try to keep it easy for you.
