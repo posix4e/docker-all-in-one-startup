@@ -59,12 +59,12 @@ You can use yarn to manage the server.
 ```
   yarn start
 ```
-    Starts the development server.
+    Starts the development server. On our example app we point this at production this way
 
 ```
   yarn build
 ```
-    Bundles the app into static files for production.
+    Bundles the app into static files for production. Here's where we should be enabling sourcemap building, web workers, etc.
 
 ```
   yarn test
@@ -81,7 +81,7 @@ You can use yarn to manage the server.
 Backend Interace
 --------
 
-Postgrest totally unconfigured. Checkout the example for a use with jwt.
+Postgrest totally unconfigured. Checkout the example for a use with jwt in reserve-my-life.
 
 Nginx Proxy
 --------
@@ -95,4 +95,4 @@ https://www.web2generators.com/apache-tools/htpasswd-generator
 Postgresql
 --------
 
-The database we store our data in. There's an init directory for everything you need to initialize your database.
+The database we store our data in. There's an init directory for everything you need to initialize your database. The example app includes how to build your application with sql files.https://github.com/posix4e/reserve-my-life/tree/master/postgres/init
