@@ -17,8 +17,8 @@ deployment to kubernetes with kompose or ecs for staging and production.
 Rules to live by
 --------
 - Someone has to understand how the cluster is managed, but this depends totally on your choice of deployment.
-- No one should deploy to production k8s without being a kubectl expert
-- Hopefully you aren't using the included docker postgresql in production as it's ephemeral an not backed up. Docker-compose will keep it's state if you want. Our scripts generally delete the docker-compose version in our example. 
+- No one should deploy to production k8s without being a kubectl expert or having it hooked up to CI. We choose to do continuous deployment and delivery.
+- Hopefully you aren't using the included docker postgresql in production as it's ephemeral an not backed up. Docker-compose will keep it's state if you want. Our scripts generally delete the docker-compose leftoverness . 
 - You already have the k8s files so you'll have no trouble using them directly
 
 Preinstall
