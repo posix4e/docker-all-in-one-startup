@@ -34,6 +34,13 @@ install docker compose using pip
 pip install docker-compose
 ```
 
+If you want to create kubernetes files you will want to install
+kompose with:
+
+```
+curl -L https://github.com/kubernetes-incubator/kompose/releases/download/v0.7.0/kompose-linux-amd64 -o kompose
+```
+
 Configuration
 --------
 We try to keep it easy for you. Pretty emuch everything
