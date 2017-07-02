@@ -1,9 +1,15 @@
-#!/bin/sh
 set -exu
 
 NGINX_BUILD=${BUILD_LOCATION-"nginx/build"}
 
 rm -rf ${NGINX_BUILD}
 cp -a frontend/build ${NGINX_BUILD}
+yes | docker-compose rm
 docker-compose build
-docker-compose up
+docker-compose up &
+# Wait for the postgres port to be available
+until nc -z localhost 8000
+do
+echo "waiting for nginx to bind..."
+  sleep 0.5
+done
